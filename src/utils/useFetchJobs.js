@@ -9,7 +9,7 @@ const ACTIONS = {
     UPDATE_HAS_NEXT_PAGE: 'update-has-next-page'
 }
 
-const BASE_URL = 'http://localhost:8000'
+const BASE_URL = '/positions.json'
 
 function reducer(state, action){
     switch(action.type){
@@ -63,8 +63,9 @@ export default function useFetchJobs(params, page){
             dispatch({
                 type: ACTIONS.GET_DATA,
                 payload: {
-                    jobs: res.data.data
-                    // jobs: data
+                    jobs: res.data
+                    // jobs: res.data.data  (if you use http://localhost:8000 backend server instead of "proxy" from package.json)
+                    // This is done to prevent CORS issues
                 }
             })
         }).catch(err=>{
@@ -87,7 +88,9 @@ export default function useFetchJobs(params, page){
             dispatch({
                 type: ACTIONS.UPDATE_HAS_NEXT_PAGE,
                 payload: {
-                    hasNextPage: res.data.data.length !== 0
+                    hasNextPage: res.data.length !== 0
+                    // hasNextPage: res.data.data.length !== 0  (if you use http://localhost:8000 as your "BASE_URL" (nodejs backend server) instead of "proxy" from package.json)
+                    // This is done to prevent CORS issues
                 }
             })
         }).catch(err=>{
