@@ -2,6 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+### Optional step  
+
+This was done initially to avoid cors issues. Now, we are using proxy. Check out <code>package.json</code>
+
 In the project directory, you can run:
 
 ### `npm run server`
